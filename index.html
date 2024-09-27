@@ -207,6 +207,16 @@
       background-color: #5a6268;
     }
 
+    #print-message {
+      background-color: #17a2b8;
+      color: white;
+      border: none;
+    }
+
+    #print-message:hover {
+      background-color: #138496;
+    }
+
     #send-gmail {
       background-color: #D14836;
       color: white;
@@ -463,7 +473,7 @@
           <option value="uncollected-food-disposal">Uncollected Food Disposal</option>
         </optgroup>
         <optgroup label="🚫 Policy Violations">
-          <option value="using-copied-forms">Using Copied Forms</option>
+          <option value="unauthorized-fob-usage">Unauthorized Fob Usage</option>
         </optgroup>
         <optgroup label="ℹ️ Information Requests">
           <option value="provide-property-management-contact">Provide Property Management Contact Information</option>
@@ -487,6 +497,7 @@
       <textarea class="message-box" id="message-content" rows="15" placeholder="Your generated message will appear here..."></textarea>
       <div class="send-options">
         <button id="copy-message"><i class="fas fa-copy"></i> Copy</button>
+        <button id="print-message"><i class="fas fa-print"></i> Print</button>
         <button id="send-gmail"><i class="fas fa-envelope"></i> Gmail</button>
         <button id="send-outlook"><i class="fas fa-envelope-open"></i> Outlook</button>
         <button id="send-sms"><i class="fas fa-sms"></i> SMS</button>
@@ -510,7 +521,7 @@
         <strong>Step 4:</strong> Choose the appropriate complaint type from the dropdown menu.<br>
         <strong>Step 5:</strong> Click "Generate Message" to create a message based on the provided information.<br>
         <strong>Step 6:</strong> Review and edit the generated message if necessary.<br>
-        <strong>Step 7:</strong> Use the available options to copy or send the message via your preferred platform.
+        <strong>Step 7:</strong> Use the available options to copy, print, or send the message via your preferred platform.
       </p>
     </div>
   </div>
@@ -688,6 +699,7 @@ ${senderName}
 Gloucester on Yonge Security`;
             break;
 
+          // Include all other cases here
           case 'cardboard-box-disposal-reminder':
             subject = 'Reminder: Proper Disposal of Cardboard Boxes';
             messageContent = `Dear ${residentName},
@@ -779,6 +791,19 @@ ${senderName}
 Gloucester on Yonge Security`;
             break;
 
+          case 'unauthorized-fob-usage':
+            subject = 'Unauthorized Fob Usage Alert';
+            messageContent = `Dear ${residentName},
+
+It has come to our attention that there may have been unauthorized use of copied access fobs associated with your unit (${unitNumber}). Please be advised that copying access fobs is prohibited under building policy. We kindly request you to see the security supervisor, available Monday to Friday, 8:00 AM to 4:00 PM, to address this issue.
+
+Thank you for your prompt attention.
+
+Sincerely,
+${senderName}
+Gloucester on Yonge Security`;
+            break;
+
           case 'riding-vehicles-in-lobby':
             subject = 'Lobby Policy Violation Notice';
             messageContent = `Dear ${residentName},
@@ -812,32 +837,6 @@ Gloucester on Yonge Security`;
 Please be reminded that food left on the lobby counter for more than 15 minutes will be discarded due to health and safety concerns. Kindly collect your food deliveries promptly upon arrival.
 
 Thank you for your understanding.
-
-Sincerely,
-${senderName}
-Gloucester on Yonge Security`;
-            break;
-
-          case 'unauthorized-fob-usage':
-            subject = 'Unauthorized Fob Usage Alert';
-            messageContent = `Dear ${residentName},
-
-It has come to our attention that there may have been unauthorized use of copied access fobs associated with your unit (${unitNumber}). Please be advised that copying access fobs is prohibited under building policy. We kindly request you to see the security supervisor, available Monday to Friday, 8:00 AM to 4:00 PM, to address this issue.
-
-Thank you for your prompt attention.
-
-Sincerely,
-${senderName}
-Gloucester on Yonge Security`;
-            break;
-
-          case 'using-copied-forms':
-            subject = 'Notice Regarding Unauthorized Use of Access Forms';
-            messageContent = `Dear ${residentName},
-
-We have noticed that copied access forms have been used, which is not permitted under building policy. Please see the security supervisor, available Monday to Friday, 8:00 AM to 4:00 PM, to resolve this matter.
-
-Thank you for your immediate attention.
 
 Sincerely,
 ${senderName}
@@ -898,6 +897,25 @@ ${messageContent}`;
       }, function() {
         alert('Failed to copy message.');
       });
+    });
+
+    // Print Message
+    document.getElementById('print-message').addEventListener('click', function() {
+      var messageText = document.getElementById('message-content').value;
+      var printWindow = window.open('', '', 'width=800,height=600');
+      printWindow.document.write('<html><head><title>The Gloucester On Yonge - Notice from Security</title>');
+      printWindow.document.write('<style>body { font-family: "Roboto", sans-serif; padding: 20px; } h1, h2 { text-align: center; } h1 { color: #003366; } .signature { margin-top: 50px; }</style>');
+      printWindow.document.write('</head><body>');
+      printWindow.document.write('<h1>The Gloucester On Yonge</h1>');
+      printWindow.document.write('<h2>Notice from Security</h2>');
+      printWindow.document.write('<p>' + messageText.replace(/\n/g, '<br>') + '</p>');
+      printWindow.document.write('<div class="signature">');
+      printWindow.document.write('</div>');
+      printWindow.document.write('</body></html>');
+      printWindow.document.close();
+      printWindow.focus();
+      printWindow.print();
+      // printWindow.close();
     });
 
     // Send via Gmail

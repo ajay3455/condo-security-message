@@ -461,7 +461,7 @@
         </optgroup>
         <optgroup label="🐾 Amenity and Building Violations">
           <option value="pet-policy-violation">Pet Policy Violation</option>
-          <option value="balcony-use-reminder">Amenity Closing Reminder</option>
+          <option value="amenity-closing-reminder">Amenity Closing Reminder</option>
         </optgroup>
         <optgroup label="⚠️ Security and Safety Alerts">
           <option value="unauthorized-access-attempt">Unauthorized Access Attempt</option>
@@ -674,7 +674,7 @@
             subject = 'Oversized Package at Front Desk';
             messageContent = `Dear ${residentName},
 
-A package addressed to you  is currently being held at the front desk. We kindly request that you collect it within 24 hours, as we are unable to store any packages for extended periods.
+A package addressed to you is currently being held at the front desk. We kindly request that you collect it within 24 hours, as we are unable to store any packages for extended periods.
 
 Thank you for your prompt attention to this matter.
 
@@ -687,7 +687,7 @@ Gloucester on Yonge Security`;
             subject = 'Parcel Left in Parcel Locker Room';
             messageContent = `Dear ${residentName},
 
-Your package has been left outside the parcel machine by the delivery person in the parcel locker room located on Parking Level 1. Please collect it within 24 hours to prevent it from being discarded or being returned to the sender.
+Your package has been left outside the parcel machine by the delivery person in the parcel locker room located on Parking Level 1. Please collect it within 24 hours to prevent it from being discarded or returned to the sender.
 
 Thank you for your cooperation.
 
@@ -762,7 +762,7 @@ ${senderName}
 Gloucester on Yonge Security`;
             break;
 
-          case 'Amenity Closing Reminder':
+          case 'amenity-closing-reminder':
             subject = 'Amenity Closing Reminder';
             messageContent = `Dear ${residentName},
 
@@ -846,14 +846,7 @@ Gloucester on Yonge Security`;
 
 As requested, please find below the contact information for Property Management:
 
-Michael Heger, OLCM
-Senior Property Manager
-Property Management Office (5th Floor)
-1 & 3 Gloucester St, Ontario, M4Y 0C6
-Phone: 647-368-7395
-Email: gloucester@crossbridgecs.com
-
-Office Hours: Monday to Friday, 8:00 AM to 4:00 PM
+[Property Management Contact Information]
 
 Please feel free to reach out for any property-related inquiries.
 
@@ -904,8 +897,8 @@ ${messageContent}`;
       printWindow.document.write('<style>body { font-family: "Roboto", sans-serif; padding: 20px; } h1, h2 { text-align: center; } h1 { color: #003366; } .signature { margin-top: 50px; }</style>');
       printWindow.document.write('</head><body>');
       printWindow.document.write('<h1>The Gloucester On Yonge</h1>');
-      printWindow.document.write('<h2>Notice from Regal Security</h2>');
-      printWindow.document.write('<p>' + messageText.replace(/\n/g, '<br>') + '</p>');
+      printWindow.document.write('<h2>Notice from Security</h2>');
+      printWindow.document.write('<p>' + messageText.replace('Subject: ' + subject, '').trim().replace(/\n/g, '<br>') + '</p>');
       printWindow.document.write('<div class="signature">');
       printWindow.document.write('</div>');
       printWindow.document.write('</body></html>');

@@ -461,7 +461,7 @@
         </optgroup>
         <optgroup label="🐾 Amenity and Building Violations">
           <option value="pet-policy-violation">Pet Policy Violation</option>
-          <option value="balcony-use-reminder">Balcony Use Reminder</option>
+          <option value="balcony-use-reminder">Amenity Closing Reminder</option>
         </optgroup>
         <optgroup label="⚠️ Security and Safety Alerts">
           <option value="unauthorized-access-attempt">Unauthorized Access Attempt</option>
@@ -471,9 +471,6 @@
           <option value="riding-vehicles-in-lobby">Riding E-Bikes/Electric Scooters in Lobby</option>
           <option value="items-left-in-lobby">Personal Items Left in Lobby</option>
           <option value="uncollected-food-disposal">Uncollected Food Disposal</option>
-        </optgroup>
-        <optgroup label="🚫 Policy Violations">
-          <option value="unauthorized-fob-usage">Unauthorized Fob Usage</option>
         </optgroup>
         <optgroup label="ℹ️ Information Requests">
           <option value="provide-property-management-contact">Provide Property Management Contact Information</option>
@@ -677,7 +674,7 @@
             subject = 'Oversized Package at Front Desk';
             messageContent = `Dear ${residentName},
 
-A package addressed to you has been received and is currently being held at the front desk. We kindly request that you collect it at your earliest convenience, as we are unable to store large or heavy items for extended periods.
+A package addressed to you  is currently being held at the front desk. We kindly request that you collect it within 24 hours, as we are unable to store any packages for extended periods.
 
 Thank you for your prompt attention to this matter.
 
@@ -690,7 +687,7 @@ Gloucester on Yonge Security`;
             subject = 'Parcel Left in Parcel Locker Room';
             messageContent = `Dear ${residentName},
 
-Your package has been left outside the parcel machine in the parcel locker room located on Parking Level 1. Please collect it within 24 hours to prevent it from being returned to the sender.
+Your package has been left outside the parcel machine by the delivery person in the parcel locker room located on Parking Level 1. Please collect it within 24 hours to prevent it from being discarded or being returned to the sender.
 
 Thank you for your cooperation.
 
@@ -704,7 +701,7 @@ Gloucester on Yonge Security`;
             subject = 'Reminder: Proper Disposal of Cardboard Boxes';
             messageContent = `Dear ${residentName},
 
-This is a friendly reminder that cardboard boxes should not be disposed of via the garbage chute. Please take them to the designated bulky items drop-off area located on Parking Level 2.
+This is a friendly reminder that cardboard boxes should not be disposed of via the garbage chute. Please take them to the designated Bulk Storage room located on Parking Level 2.
 
 We appreciate your efforts in keeping our building clean and functional.
 
@@ -717,7 +714,7 @@ Gloucester on Yonge Security`;
             subject = 'Improper Garbage Disposal Notice';
             messageContent = `Dear ${residentName},
 
-We have observed items left in the garbage chute room on your floor that could cause obstructions or damage. Please ensure that only securely tied bags are disposed of in the chute. Larger items should be taken to the bulk storage area on Parking Level 2.
+We have observed items left in the garbage chute room on your floor that could cause obstructions or damage. Please ensure that only securely tied bags are disposed of in the chute. Larger items should be taken to the bulk storage room on Parking Level 2.
 
 Your cooperation helps prevent costly repairs and maintains a clean environment for all residents.
 
@@ -765,11 +762,11 @@ ${senderName}
 Gloucester on Yonge Security`;
             break;
 
-          case 'balcony-use-reminder':
-            subject = 'Balcony Use Guidelines';
+          case 'Amenity Closing Reminder':
+            subject = 'Amenity Closing Reminder';
             messageContent = `Dear ${residentName},
 
-Please ensure that your balcony is kept clean and free of items that may pose a hazard or cause littering to units below, such as cigarette butts or debris.
+We would like to inform you that the amenity you are currently using is now past its available time. Please note that the amenities close at 11 PM. We kindly request that you refrain from using any amenity spaces after this time.
 
 Thank you for your attention to this matter.
 
@@ -834,7 +831,7 @@ Gloucester on Yonge Security`;
             subject = 'Uncollected Food Disposal Reminder';
             messageContent = `Dear ${residentName},
 
-Please be reminded that food left on the lobby counter for more than 15 minutes will be discarded due to health and safety concerns. Kindly collect your food deliveries promptly upon arrival.
+Please be reminded that food left on the lobby counter for more than 15 minutes will be discarded due to space and cleaning concerns. Kindly collect your food deliveries promptly upon arrival.
 
 Thank you for your understanding.
 
@@ -907,7 +904,7 @@ ${messageContent}`;
       printWindow.document.write('<style>body { font-family: "Roboto", sans-serif; padding: 20px; } h1, h2 { text-align: center; } h1 { color: #003366; } .signature { margin-top: 50px; }</style>');
       printWindow.document.write('</head><body>');
       printWindow.document.write('<h1>The Gloucester On Yonge</h1>');
-      printWindow.document.write('<h2>Notice from Security</h2>');
+      printWindow.document.write('<h2>Notice from Regal Security</h2>');
       printWindow.document.write('<p>' + messageText.replace(/\n/g, '<br>') + '</p>');
       printWindow.document.write('<div class="signature">');
       printWindow.document.write('</div>');

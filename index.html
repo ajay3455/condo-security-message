@@ -6,22 +6,23 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <!-- Include Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
   <!-- Include Font Awesome Icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
     /* Global Styles */
     body {
-      font-family: 'Roboto', sans-serif;
-      background-color: #f0f8ff;
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(135deg, #ece9e6, #ffffff);
       margin: 0;
       padding: 0;
       overflow-x: hidden;
+      color: #333;
     }
 
     /* Header Styles */
     header {
-      background-color: #003366;
+      background-color: #2c3e50;
       color: white;
       padding: 20px 0;
       text-align: center;
@@ -69,12 +70,14 @@
 
     /* Container Styles */
     .container {
-      max-width: 600px;
+      display: flex;
+      max-width: 1200px;
       margin: 40px auto;
-      background-color: white;
+      background-color: #ffffffcc;
       padding: 30px;
-      border-radius: 8px;
-      box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+      border-radius: 10px;
+      backdrop-filter: blur(10px);
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
       animation: fadeIn 1s ease-in-out;
     }
 
@@ -83,17 +86,37 @@
       to { opacity: 1; transform: translateY(0); }
     }
 
+    /* Form Container */
+    .form-container {
+      width: 30%;
+      padding-right: 20px;
+      border-right: 1px solid #bdc3c7;
+    }
+
+    /* Message Container */
+    .message-container {
+      width: 40%;
+      padding: 0 20px;
+      border-right: 1px solid #bdc3c7;
+    }
+
+    /* Actions Container */
+    .actions-container {
+      width: 30%;
+      padding-left: 20px;
+    }
+
     h1 {
       text-align: center;
-      color: #003366;
+      color: #2c3e50;
       margin-bottom: 20px;
     }
 
     label {
       display: block;
       margin-top: 15px;
-      font-weight: bold;
-      color: #003366;
+      font-weight: 500;
+      color: #2c3e50;
       font-size: 16px;
     }
 
@@ -101,16 +124,17 @@
       width: 100%;
       padding: 12px;
       margin-top: 5px;
-      border-radius: 4px;
-      border: 1px solid #88a9c0;
+      border-radius: 30px;
+      border: 1px solid #bdc3c7;
       font-size: 16px;
       transition: border-color 0.3s, box-shadow 0.3s;
+      background-color: #ecf0f1;
+      outline: none;
     }
 
     input[type="text"]:focus, select:focus {
-      border-color: #00509e;
-      outline: none;
-      box-shadow: 0 0 8px rgba(0, 80, 158, 0.2);
+      border-color: #2980b9;
+      box-shadow: 0 0 8px rgba(41, 128, 185, 0.2);
     }
 
     #other-guard-name {
@@ -122,157 +146,168 @@
       width: 100%;
       padding: 14px;
       margin-top: 20px;
-      background-color: #00509e;
+      background: linear-gradient(135deg, #3498db, #2ecc71);
       color: white;
       border: none;
-      border-radius: 4px;
+      border-radius: 30px;
       font-size: 18px;
       cursor: pointer;
-      transition: background-color 0.3s, transform 0.2s;
+      transition: transform 0.2s;
       display: flex;
       align-items: center;
       justify-content: center;
       gap: 10px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
     }
 
     button:hover {
-      background-color: #003f7d;
       transform: translateY(-2px);
     }
 
     /* Message Output Styles */
-    .message-output {
-      margin-top: 30px;
-      display: none;
-    }
-
-    .message-output h2 {
-      color: #003366;
+    .message-container h2 {
+      color: #2c3e50;
       margin-bottom: 10px;
     }
 
     .message-box {
       width: 100%;
       padding: 20px;
-      border-radius: 4px;
-      border: 1px solid #cce0ff;
-      background-color: #e6f2ff;
+      border-radius: 10px;
+      border: 1px solid #dcdde1;
+      background-color: #f5f6fa;
       font-family: inherit;
       font-size: 16px;
       resize: vertical;
       transition: box-shadow 0.3s;
+      outline: none;
+      height: 500px;
+      overflow-y: auto;
     }
 
     .message-box:focus {
-      box-shadow: 0 0 8px rgba(0, 80, 158, 0.2);
-      border-color: #00509e;
+      box-shadow: 0 0 8px rgba(41, 128, 185, 0.2);
+      border-color: #2980b9;
+    }
+
+    .placeholder-message {
+      color: #888;
+      font-style: italic;
+      margin-top: 20px;
     }
 
     /* Send Options Styles */
+    .actions-container h2 {
+      color: #2c3e50;
+      margin-bottom: 10px;
+      text-align: center;
+    }
+
     .send-options {
       display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
+      flex-direction: column;
+      align-items: center;
       gap: 15px;
       margin-top: 20px;
     }
 
     .send-options button {
-      padding: 10px 20px;
-      background-color: #e6f2ff;
-      color: #003366;
-      border: 1px solid #cce0ff;
-      border-radius: 4px;
+      width: 80%;
+      padding: 12px;
+      background-color: #ecf0f1;
+      color: #2c3e50;
+      border: 1px solid #bdc3c7;
+      border-radius: 30px;
       font-size: 16px;
       cursor: pointer;
-      transition: background-color 0.3s, transform 0.2s;
+      transition: transform 0.2s;
       display: flex;
       align-items: center;
+      justify-content: center;
       gap: 8px;
     }
 
     .send-options button:hover {
-      background-color: #cce0ff;
       transform: translateY(-2px);
     }
 
     /* Individual Button Colors */
     #copy-message {
-      background-color: #6c757d;
+      background-color: #95a5a6;
       color: white;
       border: none;
     }
 
     #copy-message:hover {
-      background-color: #5a6268;
+      background-color: #7f8c8d;
     }
 
     #print-message {
-      background-color: #17a2b8;
+      background-color: #8e44ad;
       color: white;
       border: none;
     }
 
     #print-message:hover {
-      background-color: #138496;
+      background-color: #71368a;
     }
 
     #send-gmail {
-      background-color: #D14836;
+      background-color: #e74c3c;
       color: white;
       border: none;
     }
 
     #send-gmail:hover {
-      background-color: #b63827;
+      background-color: #c0392b;
     }
 
     #send-outlook {
-      background-color: #0072C6;
+      background-color: #2980b9;
       color: white;
       border: none;
     }
 
     #send-outlook:hover {
-      background-color: #005b9f;
+      background-color: #1c5985;
     }
 
     #send-sms {
-      background-color: #34B7F1;
+      background-color: #27ae60;
       color: white;
       border: none;
     }
 
     #send-sms:hover {
-      background-color: #1daee0;
+      background-color: #1e8449;
     }
 
     #send-whatsapp {
-      background-color: #25D366;
+      background-color: #2ecc71;
       color: white;
       border: none;
     }
 
     #send-whatsapp:hover {
-      background-color: #1ebe5b;
+      background-color: #27ae60;
     }
 
     /* Error Message Styles */
     .error-message {
-      color: red;
+      color: #e74c3c;
       font-size: 12px;
       margin-top: 5px;
     }
 
     .error-highlight {
-      border-color: red !important;
+      border-color: #e74c3c !important;
     }
 
     /* Progress Bar Styles */
     .progress-bar {
       width: 100%;
-      background-color: #e0e0e0;
-      border-radius: 4px;
+      background-color: #dcdde1;
+      border-radius: 30px;
       overflow: hidden;
       margin-top: 20px;
       display: none;
@@ -281,7 +316,7 @@
     .progress-bar-fill {
       height: 10px;
       width: 0;
-      background-color: #00509e;
+      background: linear-gradient(135deg, #3498db, #2ecc71);
       transition: width 0.5s;
     }
 
@@ -290,20 +325,19 @@
       position: fixed;
       bottom: 20px;
       right: 20px;
-      background-color: #00509e;
+      background: linear-gradient(135deg, #3498db, #2ecc71);
       color: white;
       border: none;
       border-radius: 50%;
       padding: 15px;
       font-size: 24px;
       cursor: pointer;
-      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+      box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
       z-index: 1000;
-      transition: background-color 0.3s, transform 0.2s;
+      transition: transform 0.2s;
     }
 
     .help-button:hover {
-      background-color: #003f7d;
       transform: translateY(-2px);
     }
 
@@ -324,7 +358,7 @@
       background-color: white;
       margin: 10% auto;
       padding: 20px;
-      border-radius: 8px;
+      border-radius: 10px;
       width: 90%;
       max-width: 600px;
       animation: slideDown 0.5s ease;
@@ -346,52 +380,61 @@
       color: black;
     }
 
+    /* Notification Styles */
+    .notification {
+      visibility: hidden;
+      min-width: 200px;
+      background-color: #27ae60;
+      color: white;
+      text-align: center;
+      border-radius: 30px;
+      padding: 16px;
+      position: fixed;
+      z-index: 1001;
+      left: 50%;
+      bottom: 30px;
+      transform: translateX(-50%);
+      font-size: 17px;
+    }
+
+    .notification.show {
+      visibility: visible;
+      -webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
+      animation: fadein 0.5s, fadeout 0.5s 2.5s;
+    }
+
+    @-webkit-keyframes fadein {
+      from {bottom: 0; opacity: 0;}
+      to {bottom: 30px; opacity: 1;}
+    }
+
+    @keyframes fadein {
+      from {bottom: 0; opacity: 0;}
+      to {bottom: 30px; opacity: 1;}
+    }
+
+    @-webkit-keyframes fadeout {
+      from {bottom: 30px; opacity: 1;}
+      to {bottom: 0; opacity: 0;}
+    }
+
+    @keyframes fadeout {
+      from {bottom: 30px; opacity: 1;}
+      to {bottom: 0; opacity: 0;}
+    }
+
     /* Responsive Styles */
-    @media (max-width: 600px) {
-      body {
-        padding: 10px;
-      }
-
+    @media (max-width: 1200px) {
       .container {
-        width: 100%;
-        margin: 20px auto;
-        padding: 20px;
-      }
-
-      header {
-        padding: 15px 0;
-      }
-
-      header svg {
-        width: 30px;
-        height: 30px;
-      }
-
-      h1 {
-        font-size: 24px;
-      }
-
-      label {
-        font-size: 14px;
-      }
-
-      input[type="text"], select {
-        padding: 10px;
-        font-size: 14px;
-      }
-
-      button {
-        padding: 12px;
-        font-size: 16px;
-      }
-
-      .send-options {
         flex-direction: column;
-        align-items: stretch;
       }
-
-      .send-options button {
+      .form-container, .message-container, .actions-container {
         width: 100%;
+        padding: 0;
+        border-right: none;
+      }
+      .form-container, .message-container {
+        margin-bottom: 30px;
       }
     }
   </style>
@@ -401,7 +444,7 @@
     <!-- Security Icon -->
     <svg width="40" height="40" viewBox="0 0 64 64" fill="white" xmlns="http://www.w3.org/2000/svg">
       <rect width="64" height="64" rx="8" ry="8"/>
-      <path d="M32 12L24 44H28L30 36H38L40 44H44L36 12H32ZM32 20L34.5 28H29.5L32 20Z" fill="#003366"/>
+      <path d="M32 12L24 44H28L30 36H38L40 44H44L36 12H32ZM32 20L34.5 28H29.5L32 20Z" fill="#2c3e50"/>
     </svg>
     <span style="font-size: 24px; font-weight: bold;">Condominium Security Messaging</span>
     <!-- Animated Background Icons -->
@@ -415,83 +458,100 @@
   </header>
 
   <div class="container">
-    <h1>🔐 Send a Message</h1>
-    <!-- Form Fields -->
-    <div id="form-fields">
-      <label for="guard-name">👮‍♂️ Guard Name: <span style="color: red;">*</span></label>
-      <select id="guard-name">
-        <option value="">Select guard's name</option>
-        <!-- Add more guard names as needed -->
-        <option value="Ajaypreet">Ajaypreet</option>
-        <option value="Amritpal">Amritpal</option>
-        <option value="Meet">Meet</option>
-        <option value="Jatin">Jatin</option>
-        <option value="Ashwin">Ashwin</option>
-        <option value="Arnav">Arnav</option>
-        <option value="Jashanpreet">Jashanpreet</option>
-        <option value="Praveen">Praveen</option>
-        <option value="Other">Other</option>
-      </select>
-      <input type="text" id="other-guard-name" placeholder="Enter guard's name">
-      <span id="guard-name-error" class="error-message"></span>
+    <!-- Form Container -->
+    <div class="form-container">
+      <h1>🔒 Send a Message</h1>
+      <!-- Form Fields -->
+      <div id="form-fields">
+        <label for="guard-name">🛡️ Guard Name: <span style="color: red;">*</span></label>
+        <select id="guard-name">
+          <option value="">Select guard's name</option>
+          <!-- Add more guard names as needed -->
+          <option value="Ajaypreet">Ajaypreet</option>
+          <option value="Amritpal">Amritpal</option>
+          <option value="Meet">Meet</option>
+          <option value="Jatin">Jatin</option>
+          <option value="Ashwin">Ashwin</option>
+          <option value="Arnav">Arnav</option>
+          <option value="Jashanpreet">Jashanpreet</option>
+          <option value="Praveen">Praveen</option>
+          <option value="Other">Other</option>
+        </select>
+        <input type="text" id="other-guard-name" placeholder="Enter guard's name">
+        <span id="other-guard-name-error" class="error-message"></span>
+        <span id="guard-name-error" class="error-message"></span>
 
-      <label for="resident-name">👤 Resident Name: <span style="color: red;">*</span></label>
-      <input type="text" id="resident-name" placeholder="Enter resident's name">
-      <span id="resident-name-error" class="error-message"></span>
+        <label for="resident-name">👤 Resident Name: <span style="color: red;">*</span></label>
+        <input type="text" id="resident-name" placeholder="Enter resident's name">
+        <span id="resident-name-error" class="error-message"></span>
 
-      <label for="unit-number">🏢 Unit Number: <span style="color: red;">*</span></label>
-      <input type="text" id="unit-number" placeholder="Enter unit number">
-      <span id="unit-number-error" class="error-message"></span>
+        <label for="unit-number">🏢 Unit Number: <span style="color: red;">*</span></label>
+        <input type="text" id="unit-number" placeholder="Enter unit number">
+        <span id="unit-number-error" class="error-message"></span>
 
-      <label for="complaint-type">📋 Complaint Type: <span style="color: red;">*</span></label>
-      <select id="complaint-type">
-        <option value="">Select a complaint type</option>
-        <!-- Include all the original options here -->
-        <optgroup label="📦 Parcel Issues">
-          <option value="parcel-at-front-desk">Parcel Available at Front Desk</option>
-          <option value="parcel-left-outside-machine">Parcel Left Outside the Machine</option>
-        </optgroup>
-        <optgroup label="🗑️ Garbage Disposal Issues">
-          <option value="cardboard-box-disposal-reminder">Cardboard Box Disposal Reminder</option>
-          <option value="improper-garbage-disposal">Improper Garbage Disposal</option>
-        </optgroup>
-        <optgroup label="🔊 Noise Complaints">
-          <option value="noise-complaint-quiet-hours">Noise Complaint - Quiet Hours</option>
-          <option value="general-noise-disturbance">General Noise Disturbance</option>
-        </optgroup>
-        <optgroup label="🐾 Amenity and Building Violations">
-          <option value="pet-policy-violation">Pet Policy Violation</option>
-          <option value="amenity-closing-reminder">Amenity Closing Reminder</option>
-        </optgroup>
-        <optgroup label="⚠️ Security and Safety Alerts">
-          <option value="unauthorized-access-attempt">Unauthorized Access Attempt</option>
-          <option value="unauthorized-fob-usage">Unauthorized Fob Usage</option>
-        </optgroup>
-        <optgroup label="🏛️ Lobby Etiquette Violations">
-          <option value="riding-vehicles-in-lobby">Riding E-Bikes/Electric Scooters in Lobby</option>
-          <option value="items-left-in-lobby">Personal Items Left in Lobby</option>
-          <option value="uncollected-food-disposal">Uncollected Food Disposal</option>
-        </optgroup>
-        <optgroup label="ℹ️ Information Requests">
-          <option value="provide-property-management-contact">Provide Property Management Contact Information</option>
-        </optgroup>
-      </select>
-      <span id="complaint-type-error" class="error-message"></span>
+        <label for="complaint-type">📜 Complaint Type: <span style="color: red;">*</span></label>
+        <select id="complaint-type">
+          <option value="">Select a complaint type</option>
+          <!-- Include all the original options here -->
+          <optgroup label="📦 Parcel Issues">
+            <option value="parcel-at-front-desk">Parcel Available at Front Desk</option>
+            <option value="parcel-left-outside-machine">Parcel Left Outside the Machine</option>
+          </optgroup>
+          <optgroup label="🗑️ Garbage Disposal Issues">
+            <option value="cardboard-box-disposal-reminder">Cardboard Box Disposal Reminder</option>
+            <option value="improper-garbage-disposal">Improper Garbage Disposal</option>
+            <option value="garbage-left-outside-unit">Garbage Left Outside Unit Door</option>
+          </optgroup>
+          <optgroup label="🔊 Noise Complaints">
+            <option value="noise-complaint-quiet-hours">Noise Complaint - Quiet Hours</option>
+            <option value="general-noise-disturbance">General Noise Disturbance</option>
+          </optgroup>
+          <optgroup label="🐾 Amenity and Building Violations">
+            <option value="pet-policy-violation">Pet Policy Violation</option>
+            <option value="amenity-closing-reminder">Amenity Closing Reminder</option>
+          </optgroup>
+          <optgroup label="⚠️ Security and Safety Alerts">
+            <option value="unauthorized-access-attempt">Unauthorized Access Attempt</option>
+            <option value="unauthorized-fob-usage">Unauthorized Fob Usage</option>
+          </optgroup>
+          <optgroup label="🏛️ Lobby Etiquette Violations">
+            <option value="riding-vehicles-in-lobby">Riding E-Bikes/Electric Scooters in Lobby</option>
+            <option value="items-left-in-lobby">Personal Items Left in Lobby</option>
+            <option value="uncollected-food-disposal">Uncollected Food Disposal</option>
+          </optgroup>
+          <optgroup label="🚗 Parking Issues">
+            <option value="parking-spot-violation">Parking Spot Violation</option>
+            <option value="extended-vehicle-parking">Extended Vehicle Parking</option>
+          </optgroup>
+          <optgroup label="🔐 Locker Issues">
+            <option value="unauthorized-locker-usage">Unauthorized Locker Usage</option>
+          </optgroup>
+          <optgroup label="ℹ️ Information Requests">
+            <option value="provide-property-management-contact">Provide Property Management Contact Information</option>
+          </optgroup>
+        </select>
+        <span id="complaint-type-error" class="error-message"></span>
 
-      <!-- Generate Message Button -->
-      <button id="generate-message"><i class="fas fa-envelope-open-text"></i> Generate Message</button>
+        <!-- Generate Message Button -->
+        <button id="generate-message"><i class="fas fa-envelope-open-text"></i> Generate Message</button>
+
+        <!-- Progress Bar -->
+        <div id="progress-bar" class="progress-bar">
+          <div class="progress-bar-fill"></div>
+        </div>
+      </div>
     </div>
 
-    <!-- Progress Bar -->
-    <div id="progress-bar" class="progress-bar">
-      <div class="progress-bar-fill"></div>
+    <!-- Message Output Container -->
+    <div class="message-container">
+      <h2>📨 Message Preview:</h2>
+      <textarea class="message-box" id="message-content" readonly></textarea>
+      <p id="placeholder" class="placeholder-message">Waiting for the guard to fill up the details...</p>
     </div>
 
-    <!-- Message Output -->
-    <div class="message-output" id="message-output">
-      <h2>📨 Generated Message:</h2>
-      <p style="color: #555; margin-bottom: 5px;">You can edit the message below before sending.</p>
-      <textarea class="message-box" id="message-content" rows="15" placeholder="Your generated message will appear here..."></textarea>
+    <!-- Actions Container -->
+    <div class="actions-container">
+      <h2>⚙️ Actions</h2>
       <div class="send-options">
         <button id="copy-message"><i class="fas fa-copy"></i> Copy</button>
         <button id="print-message"><i class="fas fa-print"></i> Print</button>
@@ -502,6 +562,9 @@
       </div>
     </div>
   </div>
+
+  <!-- Notification -->
+  <div id="notification" class="notification"></div>
 
   <!-- Help Button -->
   <button id="help-button" class="help-button"><i class="fas fa-question-circle"></i></button>
@@ -608,10 +671,10 @@
           progressBar.style.display = 'none';
           callback();
         } else {
-          width += 10;
+          width += 100;
           progressBarFill.style.width = width + '%';
         }
-      }, 50);
+      }, 10); // Extremely fast progress bar
     }
 
     // Generate Message Function
@@ -696,7 +759,6 @@ ${senderName}
 Gloucester on Yonge Security`;
             break;
 
-          // Include all other cases here
           case 'cardboard-box-disposal-reminder':
             subject = 'Reminder: Proper Disposal of Cardboard Boxes';
             messageContent = `Dear ${residentName},
@@ -717,6 +779,19 @@ Gloucester on Yonge Security`;
 We have observed items left in the garbage chute room on your floor that could cause obstructions or damage. Please ensure that only securely tied bags are disposed of in the chute. Larger items should be taken to the bulk storage room on Parking Level 2.
 
 Your cooperation helps prevent costly repairs and maintains a clean environment for all residents.
+
+Sincerely,
+${senderName}
+Gloucester on Yonge Security`;
+            break;
+
+          case 'garbage-left-outside-unit':
+            subject = 'Garbage Left Outside Unit Door';
+            messageContent = `Dear ${residentName},
+
+We have noticed that garbage, especially cardboard boxes, has been left outside your unit door. Please remove it promptly. If not removed soon, it will be discarded, and a cleaning fee of $250 will be applied to your account.
+
+Thank you for your attention to this matter.
 
 Sincerely,
 ${senderName}
@@ -840,6 +915,45 @@ ${senderName}
 Gloucester on Yonge Security`;
             break;
 
+          case 'parking-spot-violation':
+            subject = 'Parking Spot Violation Notice';
+            messageContent = `Dear ${residentName},
+
+We have observed that a vehicle associated with your unit (${unitNumber}) has been parked in a spot not assigned to you. Please ensure that you only use your designated parking spot to avoid inconveniencing other residents.
+
+Thank you for your cooperation.
+
+Sincerely,
+${senderName}
+Gloucester on Yonge Security`;
+            break;
+
+          case 'extended-vehicle-parking':
+            subject = 'Extended Vehicle Parking Alert';
+            messageContent = `Dear ${residentName},
+
+We have noticed that a vehicle associated with your unit (${unitNumber}) has been parked in the visitor parking area for an extended period. Please be reminded that visitor parking is intended for short-term use only.
+
+Thank you for your attention to this matter.
+
+Sincerely,
+${senderName}
+Gloucester on Yonge Security`;
+            break;
+
+          case 'unauthorized-locker-usage':
+            subject = 'Unauthorized Locker Usage Notice';
+            messageContent = `Dear ${residentName},
+
+It has come to our attention that you have been using a locker assigned to another resident without proper authorization. We kindly request that you remove your belongings from the locker at your earliest convenience to avoid any further action.
+
+Thank you for your prompt attention to this matter.
+
+Sincerely,
+${senderName}
+Gloucester on Yonge Security`;
+            break;
+
           case 'provide-property-management-contact':
             subject = 'Property Management Contact Information';
             messageContent = `Dear ${residentName},
@@ -848,12 +962,12 @@ As requested, please find below the contact information for Property Management:
 
 Michael Heger, OLCM
 Senior Property Manager
-3 Gloucester St, Ontario, M4Y OC6
+3 Gloucester St, Ontario, M4Y 0C6
 Office Phone: 647-368-7395
-Email: gloucester@crossbridgecs.com
+Email: gloucester.on@fsresidential.com
 
 Office at 5th Floor
-(Monday to Friday) 9am to 5pm
+(Monday to Friday) 9 AM to 5 PM
 
 Please feel free to reach out for any property-related inquiries.
 
@@ -881,34 +995,82 @@ Gloucester on Yonge Security`;
 ${messageContent}`;
 
         document.getElementById('message-content').value = messageContent;
-        document.getElementById('message-output').style.display = 'block';
-        window.scrollTo(0, document.body.scrollHeight);
+        document.getElementById('message-content').style.display = 'block';
+        document.getElementById('placeholder').style.display = 'none';
       });
     });
 
     // Copy Message
     document.getElementById('copy-message').addEventListener('click', function() {
       var messageText = document.getElementById('message-content').value;
-      navigator.clipboard.writeText(messageText).then(function() {
-        alert('Message copied to clipboard!');
-      }, function() {
-        alert('Failed to copy message.');
-      });
+
+      if (navigator.clipboard && window.isSecureContext) {
+        // navigator.clipboard.writeText is supported
+        navigator.clipboard.writeText(messageText).then(function() {
+          showNotification('Message copied to clipboard!');
+        }, function() {
+          fallbackCopyTextToClipboard(messageText);
+        });
+      } else {
+        // Fallback to execCommand
+        fallbackCopyTextToClipboard(messageText);
+      }
     });
+
+    function fallbackCopyTextToClipboard(text) {
+      var textArea = document.createElement("textarea");
+      textArea.value = text;
+
+      // Avoid scrolling to bottom
+      textArea.style.position = "fixed";
+      textArea.style.top = "-9999px";
+      textArea.style.left = "-9999px";
+
+      document.body.appendChild(textArea);
+      textArea.focus();
+      textArea.select();
+
+      try {
+        var successful = document.execCommand('copy');
+        if (successful) {
+          showNotification('Message copied to clipboard!');
+        } else {
+          showNotification('Failed to copy message.', true);
+        }
+      } catch (err) {
+        showNotification('Failed to copy message.', true);
+      }
+
+      document.body.removeChild(textArea);
+    }
+
+    // Show Notification Function
+    function showNotification(message, isError) {
+      var notification = document.getElementById('notification');
+      notification.innerText = message;
+      if (isError) {
+        notification.style.backgroundColor = '#e74c3c'; // Red color for errors
+      } else {
+        notification.style.backgroundColor = '#27ae60'; // Green color for success
+      }
+      notification.classList.add('show');
+      setTimeout(function() {
+        notification.classList.remove('show');
+      }, 3000);
+    }
 
     // Print Message
     document.getElementById('print-message').addEventListener('click', function() {
       var messageText = document.getElementById('message-content').value;
       var printWindow = window.open('', '', 'width=800,height=600');
       printWindow.document.write('<html><head><title>The Gloucester On Yonge - Notice from Security</title>');
-      printWindow.document.write('<style>body { font-family: "Roboto", sans-serif; padding: 20px; } h1, h2 { text-align: center; } h1 { color: #003366; } .signature { margin-top: 50px; }</style>');
+      printWindow.document.write('<style>body { font-family: "Poppins", sans-serif; padding: 20px; } h1, h2 { text-align: center; } h1 { color: #2c3e50; } .signature { margin-top: 50px; }</style>');
       printWindow.document.write('</head><body>');
       printWindow.document.write('<h1>The Gloucester On Yonge</h1>');
       printWindow.document.write('<h2>Notice from Security</h2>');
       printWindow.document.write('<p>' + messageText.replace('Subject: ' + subject, '').trim().replace(/\n/g, '<br>') + '</p>');
       printWindow.document.write('<div class="signature">');
       printWindow.document.write('</div>');
-      printWindow.document.write('</body></html>');
       printWindow.document.close();
       printWindow.focus();
       printWindow.print();
